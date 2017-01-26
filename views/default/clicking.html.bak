@@ -1,0 +1,34 @@
+{{extend 'layout.html'}}
+
+{{for i in form:}}
+    <head>
+        <style>
+            body{
+                background-color: blue;
+                color: yellow;
+            }
+            .top{
+                text-align: center;
+            }
+            .mid{
+                text-align: center;
+                font-style: bold;
+            }
+            .bot{
+                text-align: center;
+            }
+        </style>
+        <h1 class="top">{{=i.name}}</h1>
+    </head>
+    <body>
+        <br>
+        <h4 class="mid">
+            {{=i.descr}}
+        </h4><br><br>
+            
+        <p class="bot">
+            {{=i.recipe}}
+        </p><br><img src="{{=URL('default', 'download', args=[i.image])}}" height=99 alt="" />
+        
+</body>
+{{pass}}

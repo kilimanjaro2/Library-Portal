@@ -1,0 +1,17 @@
+{{extend 'layout.html'}}
+<h1>My Recipes</h1>
+{{lol=db(db.employee.created_by==auth.user.id).select()}}
+<table class='table'>
+    <th>Recipe</th>
+    <th>Recipe Description</th>
+    <th>Image</th>
+{{for row in lol:}}
+    <div>
+        <tr>
+            <td><a href={{=URL('default','clicking',args=row.id)}}>{{=row.name}}</a></td>
+            <td><a href={{=URL('default','clicking',args=row.id)}}>{{=row.descr}}</a></td>
+            <td><a href={{=URL('default','clicking',args=row.id)}}><img src="{{=URL('default', 'download', args=[row.image])}}" height=99 alt="" /></a></td>
+        </tr>
+    </div>
+{{pass}}
+              </table>

@@ -1,0 +1,29 @@
+{{extend 'layout.html'}}
+
+{{block header}}
+    <header class="container-fluid background">
+      <div class="jumbotron text-center">
+        {{if response.title:}}
+    <h1>Arun's Retreat!</h1>
+        {{pass}}
+      </div>
+    </header>
+{{end}}
+
+{{lol=db(db.employee.id>0).select(orderby=~db.employee.id)}}
+<table class='table'>
+    <th>Food Item</th>
+    <th>Recipe Description</th>
+    <th>Image</th>
+    <th>Contributor</th>
+{{for row in lol:}}
+    <div>
+        <tr>
+            <td><a href={{=URL('default','clicking',args=row.id)}}>{{=row.name}}</a></td>
+            <td><a href={{=URL('default','clicking',args=row.id)}}>{{=row.descr}}</a></td>
+            <td><a href={{=URL('default','clicking',args=row.id)}}><img src="{{=URL('default', 'download', args=[row.image])}}" height=99 alt="" /></a></td>
+            <td>{{=row.created_by.first_name}} {{=row.created_by.last_name}}</td>
+        </tr>
+    </div>
+{{pass}}
+              </table>
